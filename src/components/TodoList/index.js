@@ -7,18 +7,30 @@ import {
   Th,
   Td,
   TableContainer,
-  Badge,
+  Box,
+  Image,
   IconButton,
-  ButtonGroup, Text
+  ButtonGroup,
+  Text,
+  Center,
+  VStack,
 } from "@chakra-ui/react";
 import { DeleteIcon, CheckIcon, RepeatClockIcon } from "@chakra-ui/icons";
 
 function TodoList({ todos, deleteTodo, completeTodo }) {
   if (!todos.length) {
     return (
-      <Badge colorScheme="green" p="4" m="4" borderRadius="lg">
-        Notodos
-      </Badge>
+      <Center>
+        <VStack>
+          <Box boxSize="md">
+            <Image
+              src="https://user-images.githubusercontent.com/37680589/175788439-179be3e0-1fa9-45ca-822c-dbee4fa0ae3e.png"
+              alt="No Todo"
+            />
+          </Box>
+          <Text>Congratulations! you have completed all tasks</Text>
+        </VStack>
+      </Center>
     );
   }
   return (
@@ -34,32 +46,29 @@ function TodoList({ todos, deleteTodo, completeTodo }) {
           {todos.map((todo) => (
             <Tr key={todo.id}>
               <Td>
-                {!todo.isComplete ? (<Text>{todo.title}</Text>) : (<Text as='del'>{todo.title}</Text>)}
+                {!todo.isComplete ? (
+                  <Text>{todo.title}</Text>
+                ) : (
+                  <Text as="del">{todo.title}</Text>
+                )}
               </Td>
               <Td isNumeric>
-                <ButtonGroup
-                  variant="solid"
-                  spacing="4"
-                  size="md"
-                >
-                  {!todo.isComplete ?
-                    (
-                      <IconButton
-                        icon={<CheckIcon />}
-                        isRound="true"
-                        colorScheme="teal"
-                        onClick={() => completeTodo(todo.id)}
-                      />
-                    ) : (
-
-                      <IconButton
-                        icon={<RepeatClockIcon />}
-                        isRound="true"
-                        colorScheme="blue"
-                        onClick={() => completeTodo(todo.id)}
-                      />
-
-                    )}
+                <ButtonGroup variant="solid" spacing="4" size="md">
+                  {!todo.isComplete ? (
+                    <IconButton
+                      icon={<CheckIcon />}
+                      isRound="true"
+                      colorScheme="teal"
+                      onClick={() => completeTodo(todo.id)}
+                    />
+                  ) : (
+                    <IconButton
+                      icon={<RepeatClockIcon />}
+                      isRound="true"
+                      colorScheme="blue"
+                      onClick={() => completeTodo(todo.id)}
+                    />
+                  )}
                   <IconButton
                     icon={<DeleteIcon />}
                     isRound="true"

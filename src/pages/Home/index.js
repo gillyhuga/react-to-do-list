@@ -8,24 +8,7 @@ import TodoList from "../../components/TodoList";
 
 
 function Home() {
-  const data = [
-    {
-      id: 1,
-      title: 'Membaca Buku',
-      isComplete: false
-    },
-    {
-      id: 2,
-      title: 'Makan Malam',
-      isComplete: false
-    },
-    {
-      id: 3,
-      title: 'Belajar React Js',
-      isComplete: true
-    },
-  ]
-
+  const data = []
   const [todos, setTodos] = useState(data);
 
   function deleteTodo(id) {
